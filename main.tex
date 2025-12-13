@@ -1,0 +1,96 @@
+% -------------------- DON'T EDIT ----------------------------------------
+\documentclass[a4paper,12pt,oneside,openany]{xepersian-thesis-iasbs-ftex}
+
+\input{definitions}
+
+\begin{document}
+
+% -------------------- PLEASE EDIT ---------------------------------------
+\title{مشکلات}
+\author{نام و نام خانوادگی}
+\faculty{دانشکده‌ی ریاضی}
+\field{ریاضی-جبر}
+\degree{کارشناسی ارشد}
+
+\supervisor{زهرا نریمانی}
+% در صورتی که استاد مشاور داشته‌اید نام وی را در خط زیر بنویسید در غیر این صورت خط زیر باید غیرفعال باشد.
+%\advisor{نام استاد مشاور} 
+%\advisorexisttrue
+
+% -------------------- DON'T EDIT ----------------------------------------
+\department{ریاضی}
+\university{دانشگاه تحصیلات تکمیلی در علوم پایه زنجان}
+\city{زنجان}
+\thesisdate{\today}
+\makepersiantitle
+\startpage
+
+% اگر قصد دارید پایان نامه را به کسی تقدیم کنید، فایل didication.tex را ویرایش کنید. در غیر اینصئرت خط زیر را غیر فعال کنید
+\input{dedication}
+
+% اگر قصد دارید از کسی تشکر کنید، در این قسمت متن خود را بنویسید. در غیر اینصئرت خط زیر را غیر فعال کنید
+\thanks
+در اینجا از همه دوستانم که در این سال ها به من کمک  کرده اند تشکر  می کنم. 
+
+
+\newpage
+\begin{abstract}
+\addcontentsline{toc}{section}{چکیده} 
+\input{abstract_fa}
+\end{abstract}
+
+\tableofcontents
+% اگر مایلید لیست شکل‌های مورد استفاده و یا لیست جدول‌های مورد استفاده نمایش داده شود، خطوط زیر را فعال کنید
+%\listoffigures
+%\listoftables
+
+\newpage
+\pagenumbering{arabic}\setcounter{page}{1}
+\include{introduction}
+
+% ----------------------------------------   Chapters of the Thesis  ---------------------------------------------
+\include{chapter_1} % if any un-wanted empty page is produced between chapters, you can use \input instead of \include : \input{chapter_1}
+\include{chapter_2}
+%\include{chapter_3}
+%\include{chapter_4}
+
+
+\appendix
+%\include{appendix_1} 
+%\include{appendix_2}
+
+\bibliographystyle{unsrt-fa}
+\bibliography{MyReferences}
+
+\include{EF} % include English to Persian dictionary
+\include{FE} % include persian to English dictionary
+
+
+% --------------------------------------   INFORMATION IN LATIN  ----------------------------------------------
+\begin{latin}
+
+% -------------------- PLEASE EDIT ---------------------------------------
+\latintitle{Title of the thesis}
+\latinauthor{First Name Last Name}
+\latindegree{Master's Thesis}
+\latinfaculty{Department of Mathematics}
+\latinfield{Mathematics-Algebra}
+
+\latinthesisdate{\latintoday}
+\latinsupervisor{Name of Supervisor}
+ %If you have advisor, write its name in the following line, otherwise inactive (comment) the line.
+\latinadvisor{Name of Advisor} \advisorexisttrue
+
+% -------------------- DON'T EDIT ----------------------------------------
+\latindepartment{Mathematics}
+\latinuniversity{Institute for Advanced Studies in Basic Sciences}
+\latincity{Zanjan}
+
+\begin{latinabstract}
+\input{abstract_en}
+\end{latinabstract}
+
+\makelatintitle
+\end{latin}
+
+\end{document}

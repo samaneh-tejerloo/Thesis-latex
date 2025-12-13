@@ -1,0 +1,64 @@
+# Core LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+
+# Bibliography
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# Index, glossary, nomenclature
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glg
+*.nlo
+*.nls
+*.acn
+*.acr
+*.alg
+
+# TikZ, PSTricks, Asymptote
+*.dpth
+*.md5
+*.auxlock
+*.sta
+*.pre
+
+# Minted
+_minted*
+*.pyg
+
+# Latexmk and arara
+.arara
+latexmkrc
+
+# Temporary and backup files
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+.#*
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
