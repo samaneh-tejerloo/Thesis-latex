@@ -1,197 +1,54 @@
-\chapter{عنوان فصل یا پیوست}
+\chapter{مقدمه}
+بیوانفورماتیک سعی بر پاسخ به مسائل و پرسش‌های زیست شناسی به کمک ابزار‌های محاسباتی و مدل‌سازی‌های آماری دارد. یافتن پاسخ مناسب برای هر یک از این مسائل می‌تواند تاثیر به سزایی در فهم بیشتر ما از عملکرد‌های زیستی داشته باشد. در این پژوهش، ما بر روی پروتئين‌‌ها تمرکز کرده و هدف شناسایی مجموعه‌های پروتئینی، به کمک شبکه‌ تعاملات پروتئین-پروتئین می‌باشد. در ادامه این بخش به بیان بهتر مسئله پیش‌رو و همچنین مفاهیم بنیادی مورد نیاز می‌پردازیم.
+\section{بیان مسئله\footnote{\lr{Problem statement}}}
+بیوانفورماتیک\footnote{\lr{Bioinformatic}}  یک حوزه میان‌رشته‌ای است که با استفاده از علوم زیست‌شناسی، کامپیوتر، ریاضیات و آمار به ذخیره‌سازی و تحلیل داده‌های زیستی می‌پردازد. این علم با بهره‌گیری از فناوری‌های کامپیوتری، داده‌های مربوط به توالی‌های DNA، RNA و پروتئین‌ها را مدیریت و تفسیر می‌کند و به دلیل حجم بالای داده‌ها و اهمیت استخراج اطلاعات کاربردی، جایگاه ویژه‌ای دارد \cite{BioinformaticReview}. 
 
-به‌عنوان مثال مقداری متن در این قسمت قرار می‌دهیم. فرض کنید $\mathbb{K}$ یک میدان و $S=\mathbb{K}[x_1, \ldots, x_n]$ حلقه چندجمله‌ای‌ها روی میدان $\mathbb{K}$ باشد که با درجه‌بندی استاندارد مدرج شده است. فرض کنید $M = \oplus_{i\in \mathbb{Z}}M_i$ یک $S$-مدول ناصفر با تولید متناهی باشد. به ازای هر $i \in \mathbb{N} \cup \{0\}$، تعریف می‌کنیم:
-\[t^S_i(M) = \max \{j \colon \quad \beta^\mathbb{K}_{i,j}(M) \neq 0\} \]
-که در آن $\beta^\mathbb{K}_{i,j}(M)$، همان $i,j$-امین عدد بتی $M$ به عنوان $S$-مدول است. در واقع
-\[\beta^\mathbb{K}_{i,j}(M) = \dim_\mathbb{\mathbb{K}} \mathrm{Tor}_{i}^{S}(\mathbb{\mathbb{K}},M)_j\]
-در حالتی که $\mathrm{Tor}_{i}^{S}(\mathbb{\mathbb{K}},M)=0$، قرار می‌دهیم $t^S_i(M)= - \infty$.
+با پایان یافتن پروژه توالی‌یابی ژنوم انسان و ورود به دوره‌ی پسا‌ژنی\footnote{\lr{Postgenomic era}} ، تحقیقات پروتئومیک\footnote{\lr{Proteomics}}  به یکی از مهم‌ترین حوزه‌های علوم زیستی تبدیل شده است. پروتئومیک به مطالعه ویژگی‌های پروتئین‌ها برای توصیف ساختار، عملکرد و کنترل سیستم‌های زیستی می‌پردازد. پروتئین‌ها اغلب به تنهایی عمل نمی‌کنند، بلکه با هم تعامل دارند و برای انجام وظایف زیستی، به مولکول‌های بزرگ‌تری تبدیل می‌شوند. تعاملات پروتئین-پروتئین\footnote{\lr{Protein‌-protein interactions (PPI)}}  در فرآیندهای مهمی مانند تکثیر ژنتیکی\footnote{\lr{Gene substance copy}} ، کنترل بیان ژن\footnote{\lr{Gene expression control}} ، انتقال سیگنال‌های سلولی\footnote{\lr{Cellular signal transduction}}  و مرگ سلولی\footnote{\lr{Cell apoptosis}}  نقش کلیدی دارند. تحلیل شبکه‌های PPI برای درک بهتر سازماندهی و عملکرد سلولی ضروری است \cite{survey}. 
 
-عدد نظم کاستلنوو-مامفورد $M$ که با $\mathrm{reg}(M)$ نمایش  می‌دهیم را به صورت زیر تعریف  می‌کنیم:
-\[\mathrm{reg} (M)= \sup \{t^S_i(M)-i \colon \quad i \in \mathbb{Z} \}.\]
+تحقیقات زیستی نشان می‌دهد که یک مجموعه پروتئینی\footnote{\lr{Protein complex}}  در شبکه‌های PPI یک ساختار مولکولی است که هم از نظر ویژگی و هم از نظر ساختاری از پروتئین‌های سازگار با هم تشکیل شده است\cite{survey}. به صورت شهودی نیز، در شبکه‌های PPI اگر دو پروتئین با هم تعامل داشته باشند، به احتمال بیشتری از نظر کارایی سلولی نیز شبیه‌ به یکدیگر هستند. از این رو پیدا کردن زیرشبکه‌های به هم متصل با تراکم بالا از پروتئین‌ها می‌تواند به عنوان ماژول‌های عملکردی\footnote{\lr{Functional module}}  و یا یک مجموعه پروتئینی در نظر گرفته شوند که در فرآیند‌های ویژه‌ای در سلول نقش دارند \cite{functional}. همینطور بر این اساس می‌توان تعامل و ارتباط بین مجموعه های پروتئینی مختلف را بررسی کرد و یا حتی مجموعه‌های پروتئینی ناشناخته‌ای را کشف کرد \cite{survey}.
 
-همچنین درجه آغازین یک $S$-مدول با تولید متناهی و ناصفر $M= \oplus_{i\in \mathbb{Z}}M_i$ را با $\mathrm{indeg}\, (M)$ نمایش داده و به صورت زیر تعریف  می‌کنیم:
-\[\mathrm{indeg}\, (M)=\inf \{i \colon \quad M_i \neq 0 \}.\]
-گوییم $M$ دارای تحلیل $d$-خطی است، هرگاه 
-$\mathrm{reg}(M)=\mathrm{indeg}\,(M)$.
+یکی از بهترین روش‌ها برای مطالعه شبکه‌های PPI نگاه به آن‌ها از دید تحلیل شبکه‌های پیچیده و دید گرافی است. با این دید و به دلیل حجم عظیم داده‌های این شبکه‌ها، یکی از چالش‌های اساسی در دوره پسا‌ژنی، ارائه الگوریتم‌های بهینه به منظور شناسایی مؤثر ماژول‌های عملکردی زیستی و مجموعه‌های پروتئینی است \cite{spectral}. 
 
-\begin{theorem} 
-فرض کنید $M \neq 0$ یک $S$-مدول با تولید متناهی باشد. موارد زیر هم‌ارز هستند:
+از آنجایی که پروتئین‌های یک مجموعه پروتئینی در شبکه PPI دارای تعاملات زیادی بین خودشان هستند و این موضوع باعث کارکرد مشابه آن‌ها می‌شود، در نتیجه نواحی پر تراکم در شبکه PPI را می‌توان به عنوان یک مجموعه پروتئینی احتمالی در نظر گرفت و شناسایی مجموعه‌های پروتئینی بسیار شبیه به پیدا کردن خوشه‌ها در یک شبکه پیچیده است \cite{computational}، از این رو می‌توان این مسئله را معادل خوشه‌بندی در گراف‌ها در نظر گرفت.
+
+بیشتر‌ پژوهش‌های پیشین در این حوزه تنها از اطلاعات ساختاری شبکه‌های PPI \cite{automated}, \cite{detecting} استفاده کرده‌اند در حالی که امروزه ما به داده‌های غنی و مناسبی برای توصیف پروتئین‌ها دسترسی داریم. به عنوان مثال می‌توان به بانک اطلاعاتی GO\footnote{\lr{Gene Ontology}}  اشاره کرد که اطلاعاتی درباره ژن‌ها و پروتئین‌ها از دید‌های مختلف شامل فرآیند‌های زیستی، عملکرد مولکولی و مولفه‌های سلولی فراهم کرده و مورد بررسی و توصیف قرار می‌دهد \cite{gene}. همچنین از آنجایی که پروتئین‌ها محصولات ژنی هستند برخی از پژوهش‌ها از بیان ژنی مربوط به هر پروتئین نیز به منظور توصیف آن‌ها در شبکه PPI بهره‌ برده‌اند \cite{integration}. استفاده از این اطلاعات در کنار ساختار شبکه PPI می‌تواند منجر به تشخیص بهینه و موثرتر مجموعه‌های پروتئینی شود. برای استفاده مناسب از اطلاعات تکمیلی نیاز به الگوریتم‌های خوشه‌بندی گرافی داریم که به طور مناسب ویژگی‌های پروتئین‌ها را در کنار ساختار شبکه برای خوشه‌بندی مجموعه‌های پروتئینی در نظر گیرد، به این دسته از الگوریتم‌ها، خوشه‌بندی گراف‌های دارای ویژگی\footnote{\lr{Attributed graph clustering}}  می‌گویند \cite{clustering}. 
+
+به طور خلاصه ما سعی در ارائه یک الگوریتم جهت کشف مجموعه‌های پروتئینی و ماژول‌های عملکردی با دید گرافی به شبکه PPI در کنار استفاده از داده‌های تکمیلی بانک داده‌های زیستی با روش خوشه‌بندی گراف با گره‌های ویژگی‌دار داریم. در‬ ‫بخش‬ ‫بعد‬ ‫مفاهیم‬ ‫بنیادی‬ ‫را‬‫ معرفی‬ ‫می‌کنیم و به‪ ‫ پژوهش‬‌‫های ‬‫قبلی‬ ‫که‬ ‫در‬ ‫این‬ ‫زمینه‬ ‫انجام‬ ‫شده ‬‫است‬ ‫می‬‌‫پردازیم، ‫روش‬ ‫پیشنهادی‬ ‫را‬ ‫مطرح‬ ‫می‌کنیم‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬و در نهایت به بررسی معیار‌های ارزیابی می‌پردازیم.‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬‬
+
+
+\section{مفاهیم بنیادی}
+در مفاهیم بنیادی ابتدا به فرمول بندی مسئله خوشه‌بندی گراف‌های با گره‌های دارای ویژگی می‌پردازیم. 
+
+\subsection{خوشه بندی در گراف های با گره های دارای ویژگی }
+با فرض گراف $G=(V,E,F)$ که در آن $V$ مجموعه گره ها، $E$ مجموعه یال ها است و $F$ ماتریس ویژگی های گره ها می باشد، یک خوشه بندی از گراف $G$ را می توان با $C$ نشان داد که مجموعه ای از زیر مجموعه های $V$ است، به صورتی که  $C_i\in C\:;\:C_i\subset V$. هدف از خوشه بندی این است که خوشه هایی که هم از نظر ساختاری و هم از نظر ویژگی های گره‌ها بهم بیشترین شباهت را دارند، پیدا کنیم. همچنین خوشه‌های ایجاد شده باید از نظر ارتباط‌ یال‌های داخل خوشه چگال و در ارتباط یال‌ها با دیگر خوشه‌ها تنک باشند.
+
+\subsection{دسته‌بندی و روش‌های کلی خوشه‌بندی گراف}
+ روش‌های خوشه‌بندی گراف را می‌توان از دیدگاه‌های مختلفی تقسیم‌بندی کرد. این تقسیم‌بندی‌ها بر اساس معیارها و ویژگی‌های خاصی صورت می‌گیرند که به نحوه برخورد با داده‌های گرافی، نوع اطلاعات استفاده شده، و تکنیک‌های به کار گرفته شده بستگی دارد. در این پژوهش از آنجایی که نوع گراف ورودی مشخص است و قصد خوشه‌بندی گراف‌های \lr{PPI} با گره‌های دارای ویژگی را داریم، روش‌های خوشه‌ بندی را بر اساس روش‌ مورد استفاده تقسیم‌بندی می‌کنیم:
+
 \begin{itemize}
-\item[(آ)] $a = \mathrm{reg} (M)$.
-\item[(ب)] $a = \max\{t \colon \quad \beta^\mathbb{\mathbb{K}}_{i,i+t}(M) \neq 0; \quad i \geq 0 \text{به‌ازای برخی } \}$.
-\item[(پ)] $a = \max \{t \colon \quad \mathrm{Tor}_{i}^{S}(K,M)_{t+i} \neq 0; \quad i \geq 0 \text{به‌ازای برخی } \}$.
-\item[(ت)] $a = \max \{t \colon \quad \mathrm{Ext}_{S}^{i}(K,M)_{-t-i} \neq 0; \quad i \geq 0 \text{به‌ازای برخی } \}$.
-\item[(ث)] $a = \max \{t \colon \quad  {H_\mathfrak{m}^i(M)}_{t-i} \neq 0; \quad i \geq 0 \text{به‌ازای برخی } \}$.
-\item[(ج)] $a = \max \{a_i(M)+i \colon \quad i \in \mathbb{N} \}$ که در آن  $a_i(M)= \max \{t \colon \quad {H_\mathfrak{m}^i (M)}_{t} \neq 0 \}$.
-\end{itemize}
-\end{theorem}
+    \item روش‌های طیفی\footnote{\lr{Spectral clustering}} : از مقادیر ویژه\footnote{\lr{Eigenvalues }}  ماتریس لاپلاسین یا مجاورت برای یافتن خوشه‌ها استفاده می‌کنند.
+    \item روش‌های فاکتورگیری ماتریسی\footnote{\lr{Matrix factorization}} : از روش‌های تجزیه‌ ماتریسی مانند تجزیه نامنفی ماتریس\footnote{\lr{Non-negative matrix factorization}}  یا تجزیه مقدار تکین\footnote{\lr{Singular value factorization}}  برای ایجاد امبدینگ و خوشه‌بندی استفاده می‌کنند.
+    \item روش‌های سلسله‌مراتبی\footnote{\lr{Hierarchical clustering}} : گراف را به صورت سلسله ‌مراتبی خوشه‌بندی می‌کنند که به دو روش تقسیمی و تجمعی دسته‌بندی می‌شوند.
+    \item روش‌های مبتنی بر امبدینگ\footnote{\lr{Embedding-based methods}} : ابتدا گره‌ها به فضای برداری کم‌بعد نگاشت می‌شوند و سپس خوشه‌بندی روی این فضای برداری انجام می‌شود و تمرکز اصلی در این روش‌ها یافتن بازنمایی مناسب برای خوشه‌بندی گراف است. \lr{(Node2Vec, DeepWalk, GCN, GNN)}.
+    \item روش‌های بدون امبدینگ\footnote{\lr{Non-embedding methods}} : مستقیماً از ساختار گراف برای خوشه‌بندی استفاده می‌شود بدون اینکه گره‌ها به فضای برداری منتقل شوند \lr{(Louvain, graph - cut based)}.
 
-\section{عنوان بخش }
-متن بخش اول را در اینجا بنویسید.
-\begin{definition}
-فرض کنید $[n]=\{1, \ldots,n\}$ و $\Delta$ یک مجتمع سادکی بر $[n]$ باشد. دراین‌صورت ایدآل استنلی-رایزنر $\Delta$ را با $I_\Delta$ نمایش داده و به‌صورت زیر تعریف می کنیم
-\[I_\Delta=(\mathbf{x}_F \colon \quad F \notin \Delta).\]
-\end{definition}
-
-\subsection{عنوان زیر بخش }
-
-\begin{theorem}\label{Resolution of minimal}
-فرض کنید $\mathcal{C}$ یک $d$-ابرگراف روی مجموعه رأس‌های $[n]$ باشد که مینیمال نسبت به $d$-خطی‌بودن است و 
- $I=I(\bar{\mathcal{C}}) \subset \mathbb{K}[x_1, \ldots, x_n]$ 
-  ایدآل متناظر با 
- $\mathcal{C}$
-  باشد. در این‌صورت تحلیل آزاد مینیمال ایده‌آل
-  $I$
-   به صورت زیر است:
-\begin{align*} 
-0  \to S^{\beta_{n-d,n}}(-n) & \to S(-n) \oplus S^{\beta_{n-d-1, n-1}}(-(n-1)) \to  S^{\beta_{n-d-2, n-2}}(-(n-2))  \\
-& \to \cdots \to S^{\beta_{1,d+1}}(-(d+1)) \to S^{\beta_{0,d}}(-d) \to I \to 0 \label{Resolution of Minimal to linearity+Shape}
-\end{align*}
-که در آن،
-\begin{itemize}
-\item[(آ)] 
-$\beta_{n-d,n}(I) = 1 -e(S/I) + \sum\limits_{i=0}^{d-1} (-1)^{d+i-1} {n \choose i}$.
-\item[(ب)]
-برای $0 \leq i \leq n-d-1$، داریم 
-$\beta_{i, i+d}(I) = {n-d \choose i} \left( \frac{d}{d+i}{n \choose d} - e(S/I) \right)$.
 \end{itemize}
 
-\end{theorem}
+\subsection{پایگاه داده هستی شناسی ژن}
+\lr{GO} یک بانک داده و سیستم طبقه‌بندی است که با هدف ایجاد یک زبان استاندارد برای توصیف ژن‌ها و محصولات ژنی (که پروتئین‌ها نیز جزو آنها هستند) ایجاد شده است. این سیستم شامل سه بخش اصلی است که هر یک از آنها یک جنبه خاصی از عملکرد زیستی را توصیف می‌کنند:
 
-\begin{example}[رجوع شود به {\cite[{قضیه 5.3}]{Morales_Pour_Zaare-Nahandi_2016}}]
-فرض کنید $\Delta$ یک مثلث‌بندی از کره $\mathbb{S}^2$ با $n>4$ رأس باشد و $\mathcal{C}=\mathcal{F}(\Delta)$، ابرگراف متناظر با $\Delta$ باشد. دراین‌صورت $\mathcal{C}$ یک $3$-شبه‌منیفلد جهت‌پذیر است. پس با توجه به قضیه، ابرگراف $\mathcal{C}$ مینیمال نسبت به $3$-خطی‌بودن است. لذا قضیه \ref{Resolution of minimal} ایجاب می‌کند که تحلیل آزاد مینیمال ایدآل   $I=I(\bar{\mathcal{C}})$  به صورت زیر است:
-\begin{align*} 
-0 \to S^{\beta_{n-3,n}}(-n) \to S(-n) \oplus S^{\beta_{n-4, n-1}}(-(n-1)) \to  S^{\beta_{n-5, n-2}}(-(n-2)) \\
- \to \cdots \to S^{\beta_{0,3}}(-3) \to I \to 0
-\end{align*}
-که در آن،
-\[\beta^\mathbb{K}_{i, i+3}(I) = {n-3 \choose i} \left( \frac{3}{3+i}{n \choose 3} - 2(n-2) \right).\]
+فرآیند زیستی\footnote{\lr{Biological process}} : این بخش به فرآیند‌های زیستی اشاره دارد که ژن و یا پروتئین خاصی در آن نقش دارد.
 
-\end{example}
-\section{بخش دوم}
-\begin{proposition}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{proposition}
+عملکرد مولکولی\footnote{\lr{Molecular function}} : این بخش عملکرد دقیق مولکولی ژن یا پروتئین را توصیف می‌کند.
 
+مولفه‌ی سلولی\footnote{\lr{Cellular component}} : این بخش به مکانی که ژن یا پروتئین در آن قرار دارد اشاره می‌کند.
+از ویژگی‌های دیگر این بانک داده نمایش اطلاعات به صورت سازماندهی شده و سلسله مراتبی است که شامل شبکه‌های بدون دور می‌شود و ویژگی‌ها به این صورت مرتب شده‌اند \cite{gene}. 
 
+\subsection{شبکه‌های PPI و ویژگی‌های آنها }
+یک شبکه \lr{PPI} معمولا به صورت یک گراف بدون جهت $G=(V,E)$ نشان داده می شود که $V$ و $E$ به ترتیب نمایان‌گر پروتئین ها و تعاملات بین آنها می باشند. وزن های روی یال ها را می توان برای توصیف ویژگی های شبکه \lr{PPI}، مانند ویژگی‌های توپولوژیکی یا عملکردی استفاده کرد. شبکه های \lr{PPI} سه ویژگی توپولوژیکی زیر را دارند:
 
-\begin{corollary}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{corollary}
-
-
-
-\begin{lemma}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{lemma}
-
-
-
-\begin{conjecture}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{conjecture}
-
-
-\begin{remark}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{remark}
-
-
-\begin{question}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{question}
-
-
-\begin{problem}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{problem}
-
-
-\begin{notation}
-مقداری متن مقداری متن مقداری متن مقداری متن مقداری متن 
-\end{notation}
-
-
-
-
-\begin{figure}[h]
-\centering
-\begin{tabular}{ccc}
-\begin{tikzpicture}
-\node [draw, fill=white, circle, inner sep=2pt, label=left:{$x_3$}] (x3) at (0,0) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=left:{$x_2$}] (x2) at (0,1) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=left:{$x_1$}] (x1) at (0,2) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=right:{$y_3$}] (y3) at (1,0) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=right:{$y_2$}] (y2) at (1,1) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=right:{$y_1$}] (y1) at (1,2) {};
-
-\draw (x1)--(y2)--(x3)--(y1)--(x2)--(y3)--(x1);
-\end{tikzpicture}
-&\ \hspace{2cm}\ &
-\begin{tikzpicture}
-\node [draw, fill=white, circle, inner sep=2pt, label=left:{$x_3$}] (x3) at (0,0) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=left:{$x_2$}] (x2) at (0,1) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=left:{$x_1$}] (x1) at (0,2) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=right:{$y_3$}] (y3) at (1,0) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=right:{$y_2$}] (y2) at (1,1) {};
-\node [draw, fill=white, circle, inner sep=2pt, label=right:{$y_1$}] (y1) at (1,2) {};
-
-\draw (y2)--(x1)--(y1)--(x3)--(y3)--(x1) (x2)--(y3);
-\end{tikzpicture}\\
-\end{tabular}
-\caption{دو مثال از گراف‌های دوبخشی}
-\label{figure: bipartite graph}
-\end{figure}
-
-
-\begin{latin}
-\begin{algorithm}[H]
-\begin{algorithmic}[1]\baselineskip=10pt\relax
-
-\REQUIRE A labeled bipartite graph $ \Gamma $ with bipartition $ X, Y $
-\ENSURE A positive matching decomposition of $ \Gamma $
-\STATE $ k\longleftarrow 0 $
-\WHILE{$ E(\Gamma) \neq \varnothing $}
-\STATE $ k \longleftarrow k + 1 $
-\STATE  $ X' \longleftarrow X \setminus \{\text{isolated vertices of } X\}$
-\STATE  $ Y' \longleftarrow \varnothing $
-\STATE $M_k \longleftarrow \varnothing $
-\WHILE{$ X' \neq \varnothing$}
-\STATE $ s \longleftarrow \min(\text{Slopes}(\Gamma[X'\cup Y])) $
-\STATE $ M \longleftarrow \{xy \in E(\Gamma[X'\cup Y]) \colon \quad \mathrm{slope}(xy)=s\} $
-\STATE $ M_k \longleftarrow M_k \cup \{xy \in M \colon \quad y \notin Y'\} $
-\STATE $ X' \longleftarrow X' \setminus \{x \colon \quad xy\in M\} $
-\STATE $ Y' \longleftarrow Y' \cup \{y \colon \quad xy\in M\} $
-\ENDWHILE
-\STATE $E(\Gamma) \longleftarrow E(\Gamma) \setminus M_k $
-\ENDWHILE
-\RETURN $ M_1,\ldots,M_k$
-
-\end{algorithmic}
-\caption{\textsc{A positive matching decomposition of a labeled bipartite graph}}
-\label{alg:A positive matching decomposition of a labeled bipartite graph}
-\end{algorithm}
-\end{latin}
-
-\begin{latin}
-\begin{table}[H]
-\begin{tabular}{|c|c|c|>{\centering}p{3cm}|>{\centering}p{4cm}|}
-\cline{3-5}
-\multicolumn{2}{c}{} & \multicolumn{2}{|c|}{Oriented surfaces} & {Non-oriented surfaces} \tabularnewline
-\cline{2-5}
-\multicolumn{1}{c|}{} & {\multirow{2}{*}{$S$}} & {\multirow{2}{*}{Sphere}} & Connected sum of {$r$ tori} & Connected sum of $r$ Projective Plane \tabularnewline
-%\multicolumn{1}{c|}{} &  &  & {$r$ tori} & $r$ Projective Plane \\
-\cline{2-5}
-\multicolumn{1}{c|}{} & $\chi(S)$ & $2$ & $2-2r$ & $ 2-r $ \tabularnewline
-\hline
-{\multirow{3}{*}{$\tilde{H}_i(S,\mathbb{K})$}} & $i=0$ & $0$ & $0$ & $0$ \tabularnewline
-\cline{2-5}
- & $i=1$ & $0$ & $\mathbb{K}^{2r}$ & $(\mathbb{Z}_2 \otimes_\mathbb{Z} \mathbb{K}) \oplus \mathbb{K}^{r-1}$ \bigstrut\tabularnewline
-\cline{2-5}
- & $i=2$ & $\mathbb{K}$ & $\mathbb{K}$ & $\mathrm{Tor}_{1}^{\mathbb{Z}}(\mathbb{Z}_2,\mathbb{K})$ \bigstrut\tabularnewline
-\hline
-\end{tabular}
-\caption{Homology of $2$-manifolds}
-\label{Table of Homology}
-\end{table}
-\end{latin}
+\begin{itemize}
+    \item توزیع بدون مقیاس\footnote{\lr{Scale-free distribution}} : $P(k)$   مفهوم توزیع درجه یعنی احتمال اینکه یک گره در یک شبکه دقیقا \lr{k} پیوند داشته باشد را نشان می دهد. یک  شبکه \lr{PPI} دارای توزیع درجه توانی $P(k)\sim\:k^{-\lambda}$ می باشد\cite{evolution} . این ویژگی به این معنی است که پروتئین‌های تعامل‌دار در شبکه‌های \lr{PPI} به طور یکنواخت توزیع نمی شوند‌، بیشتر پروتئین‌ها تنها در چند تعامل شرکت می‌کنند در حالی که مجموعه کوچکی از پروتئین‌ها در ده‌ها تعامل (تشکیل گره هاب\footnote{\lr{Hub}}) شرکت می‌کنند. 
+    \item ویژگی جهان کوچک\footnote{\lr{Small-world property}} : پروتئین‌های یک شبکه \lr{PPI} دارای میانگین طول مسیر کم و ضرایب خوشه‌ای بالا هستند\cite{protein}  که سیگنال‌های هر گره در شبکه \lr{PPI} را قادر می‌سازد تا از طریق چند جهش به سرعت به هر گره دیگری برسند. در نتیجه شبکه‌های \lr{PPI} هم زمان انتقال سیگنال و هم زمان پاسخ کوتاهی خواهند داشت.
+    \item شبکه با ماژول‌های عملکردی\footnote{\lr{Functional modular network}} : شبکه \lr{PPI} یک شبکه ماژولار و سلسله مراتبی می‌باشد. یک ماژول عملکردی در یک شبکه \lr{PPI} یک مجموعه با بیشترین تعداد پروتئین که عملکرد یکسانی دارند، می‌باشد. بارزترین مشخصه ماژول عملکردی، ارتباط بین ساختار توپولوژیکی شبکه \lr{PPI} و عملکرد‌ پروتئین‌های آن است که مبنای بسیاری از روش‌های تشخیص ماژول عملکردی است\cite{molecular} \cite{road}.
+\end{itemize}
