@@ -3,16 +3,19 @@
 
 \input{definitions}
 \usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\newcommand{\reg}[1]{\textcolor{black!60}{#1}}
 \begin{document}
 
 % -------------------- PLEASE EDIT ---------------------------------------
-\title{کشف ماژول‌ها در شبکه‌های پروتئین – پروتئین با رویکردهای شبکه‌های عصبی گرافی}
+\title{کشف پیمانه‌های عملکردی در شبکه‌های تعاملات پروتئین – پروتئین با رویکرد شبکه‌های عصبی گرافی}
 \author{سمانه طجرلو}
 \faculty{دانشکده علوم رایانه و فناوری اطلاعات}
-\field{مهندسی کامپیوتر - هوش مصنوعی}
+\field{مهندسی کامپیوتر - هوش مصنوعی و رباتیکز}
 \degree{کارشناسی ارشد}
 
-\supervisor{زهرا نریمانی}
+\supervisor{دکتر زهرا نریمانی}
 % در صورتی که استاد مشاور داشته‌اید نام وی را در خط زیر بنویسید در غیر این صورت خط زیر باید غیرفعال باشد.
 %\advisor{نام استاد مشاور} 
 %\advisorexisttrue
@@ -21,7 +24,7 @@
 \department{علوم رایانه و فناوری اطلاعات}
 \university{دانشگاه تحصیلات تکمیلی در علوم پایه زنجان}
 \city{زنجان}
-\thesisdate{\today}
+\thesisdate{6 مرداد ۱۴۰۵}
 \makepersiantitle
 \startpage
 
@@ -30,7 +33,7 @@
 
 % اگر قصد دارید از کسی تشکر کنید، در این قسمت متن خود را بنویسید. در غیر اینصئرت خط زیر را غیر فعال کنید
 \thanks
-در اینجا از همه دوستانم که در این سال ها به من کمک  کرده اند تشکر  می کنم. 
+% در اینجا از همه دوستانم که در این سال ها به من کمک  کرده اند تشکر  می کنم. 
 
 
 \newpage
@@ -41,12 +44,12 @@
 
 \tableofcontents
 % اگر مایلید لیست شکل‌های مورد استفاده و یا لیست جدول‌های مورد استفاده نمایش داده شود، خطوط زیر را فعال کنید
-%\listoffigures
-%\listoftables
+\listoffigures
+\listoftables
 
 \newpage
 \pagenumbering{arabic}\setcounter{page}{1}
-\include{introduction}
+% \include{introduction}
 
 % ----------------------------------------   Chapters of the Thesis  ---------------------------------------------
 \include{chapter_1} % if any un-wanted empty page is produced between chapters, you can use \input instead of \include : \input{chapter_1}
@@ -57,29 +60,29 @@
 \\
 \\
 \include{chapter_5}
-
+\include{chapter_6}
 \appendix
-%\include{appendix_1} 
+\include{appendix_1} 
 %\include{appendix_2}
 
 \bibliographystyle{unsrt-fa}
 \bibliography{MyReferences}
 
 \include{EF} % include English to Persian dictionary
-\include{FE} % include persian to English dictionary
+%\include{FE} % include persian to English dictionary
 
 
 % --------------------------------------   INFORMATION IN LATIN  ----------------------------------------------
 \begin{latin}
 
 % -------------------- PLEASE EDIT ---------------------------------------
-\latintitle{Discovery of Modules in Protein-Protein Interaction Networks using Graph Neural Network Approaches}
+\latintitle{Discovery of Functional Modules in Protein-Protein Interaction Networks using the Graph Neural Networks Approach}
 \latinauthor{Samaneh Tejerloo}
 \latindegree{Master's Thesis}
 \latinfaculty{Computer Science and Information Technology}
-\latinfield{Artificial Intelligence}
+\latinfield{Computer Engineering – Artificial Intelligence and Robotics}
 
-\latinthesisdate{\latintoday}
+\latinthesisdate{July 28, 2026}
 \latinsupervisor{Dr. Zahra Narimani}
  %If you have advisor, write its name in the following line, otherwise inactive (comment) the line.
 % \latinadvisor{Name of Advisor} \advisorexisttrue
@@ -90,6 +93,8 @@
 \latincity{Zanjan}
 
 \begin{latinabstract}
+\thispagestyle{empty}
+\pagestyle{empty}    
 \input{abstract_en}
 \end{latinabstract}
 

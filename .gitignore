@@ -62,3 +62,5 @@ latexmkrc
 .DS_Store
 Thumbs.db
 
+answers.pdf
+answers.tex
